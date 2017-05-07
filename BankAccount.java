@@ -1,26 +1,27 @@
 public class BankAccount {
 
-    double balance = 0;
-    String accountOwner;
+    double balance;
+    String owner;
 
-    public void setOwner(String owner) {
-        accountOwner = owner;
-    }
-    
+    // deposit 
     public void deposit(double amount) {
         balance += amount;
     }
 
-    public void displayInfo() {
-        System.out.println(  "Owner : " + accountOwner);
-        System.out.println("Balance : " + Double.toString(balance));
+    // withdraw 
+    public void withdraw(double amount) {
+        balance -= amount;
+    }
+
+    // get balance
+    public double getBalance() {
+        return balance;
     }
 
     public static void main (String [] args) {
         BankAccount myAccount = new BankAccount();
-        myAccount.setOwner("John Doe");
         myAccount.deposit(1000.00);
-        myAccount.displayInfo();
+        System.out.println(myAccount.getBalance());
     
     }
 } 
