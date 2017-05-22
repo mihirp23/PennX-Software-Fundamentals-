@@ -16,9 +16,9 @@ public class WhackAMole {
     public WhackAMole() {}
     
     // constructor
-    public WhackAMole(int numAttempts, int gridDimension[][]) {
+    public WhackAMole(int numAttempts, int gridDimension) {
         this.attempts = numAttempts;
-        this.moleGrid = gridDimension;
+        this.moleGrid= new int[gridDimension][gridDimension];
     }
     
     // given a location, place a mole at that location and return true. Otherwise, return false.
