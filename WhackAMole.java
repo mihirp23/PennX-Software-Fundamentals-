@@ -10,7 +10,7 @@ public class WhackAMole {
 	
 	// instance variables
     int scores = 0, molesLeft = 10, attempts = 0;
-    int [][] moleGrid = new int [10][10];
+    char [][] moleGrid = new char [10][10];
     
     // default constructor
     public WhackAMole() {}
@@ -18,13 +18,13 @@ public class WhackAMole {
     // constructor
     public WhackAMole(int numAttempts, int gridDimension) {
         this.attempts = numAttempts;
-        this.moleGrid= new int[gridDimension][gridDimension];
+        this.moleGrid= new char[gridDimension][gridDimension];
     }
     
     // given a location, place a mole at that location and return true. Otherwise, return false.
     boolean place (int x, int y) {
-        if (moleGrid[x][y] == 0) {
-        	moleGrid[x][y] = 1;
+        if (moleGrid[x][y] == '*') {
+        	moleGrid[x][y] = 'M';
         	return true;
         }
     	return false;
@@ -33,8 +33,8 @@ public class WhackAMole {
     // given a location, take a "whack" at that location. If mole exists there, increment the score and 
     // decrement the number of moles. Otherwise, increment the number of attempts.
     void whack (int x, int y) {
-        if (moleGrid[x][y] == 1) {
-        	moleGrid[x][y] = 2;
+        if (moleGrid[x][y] == 'M') {
+        	moleGrid[x][y] = 'W';
         	scores++;
         	molesLeft--;
         }
@@ -49,18 +49,7 @@ public class WhackAMole {
     	int cols = moleGrid[0].length;
     	for (int i = 0; i < rows; i++) {
     		for (int j = 0; j < cols; j++) {
-    			char ch = '*';
-    			if (moleGrid[i][j] == 1) {
-    				ch = 'M'; //  mole
-    			}
-    			else if (moleGrid[i][j] == 2) {
-    				ch = 'W'; // whacked mole
-    			}
-    			else {
-    				ch = '*';
-    			}
-    			System.out.print(ch);
-    			
+    			System.out.print(moleGrid[i][j]);
     		}
     		System.out.println("");
     	}
