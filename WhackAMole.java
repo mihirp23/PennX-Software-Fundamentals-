@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class WhackAMole {
 	
     // instance variables
-    int scores = 0, molesLeft = 10, attemptsLeft = 50;
+    int scores = 0, molesLeft = 0, attemptsLeft = 50;
     char [][] moleGrid = new char [10][10];
     
     // constructor
@@ -22,6 +22,7 @@ public class WhackAMole {
     boolean place (int x, int y) {
         if (moleGrid[x][y] == '*') {
         	moleGrid[x][y] = 'M';
+                molesLeft++;
         	return true;
         }
     	return false;
@@ -35,7 +36,7 @@ public class WhackAMole {
         	scores++;
         	molesLeft--;
         }
-      	attemptsLeft++;
+      	attemptsLeft--;
     }
 
     // print the mole grid to user (hiding the moles)
@@ -51,6 +52,7 @@ public class WhackAMole {
                     System.out.print('*');
                 }
             }
+      	    System.out.println("");
         }
     }
     
@@ -59,10 +61,10 @@ public class WhackAMole {
     	int rows = moleGrid.length;
     	int cols = moleGrid[0].length;
     	for (int i = 0; i < rows; i++) {
-    		for (int j = 0; j < cols; j++) {
-    			System.out.print(moleGrid[i][j]);
-    		}
-    		System.out.println("");
+    	    for (int j = 0; j < cols; j++) {
+    		System.out.print(moleGrid[i][j]);
+       	    }
+       	    System.out.println("");
     	}
     }
     
@@ -87,37 +89,8 @@ public class WhackAMole {
     	}
     }
     
-    
-	public static void main(String[] args) {
-		
-		// set up the game for the user
-		//System.out.println("Welcome to my game of Whack A Mole!");
-		//System.out.println("You have 50 attempts...");
-		//System.out.println("Enter the coordinate to whack a position on the grid.");
-		//System.out.println("To quit, enter (-1,-1)");
-		//WhackAMole myGame = new WhackAMole(50,10);
-		//myGame.setRandom();
-		//
-		//// let the user play...
-		//int x,y;
-		//do {
-		//	System.out.print("enter coordinate ");
-		//	Scanner i = new Scanner(System.in);
-		//	x = i.nextInt();
-		//	y = i.nextInt();
-                //        if (x == -1 && y == -1) { break; }
-		//	myGame.whack(x, y);
-		//	System.out.println("");
-		//}  while (x != -1 && y != -1 && myGame.attemptsLeft < 50 && myGame.molesLeft > 0);
-		//
-		//// display the final info after the game.
-		//myGame.printGrid();
-		//System.out.println("Game Over! Thank you for playing...");
-		//System.out.print("Score : ");
-		//System.out.print(myGame.scores);
-		//System.out.println();
-		//System.out.print("Moles left : ");
-		//System.out.print(myGame.molesLeft);
-  	}
+    public static void main(String[] args) {
+
+    }
 
 }
