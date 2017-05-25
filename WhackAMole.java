@@ -16,6 +16,11 @@ public class WhackAMole {
     public WhackAMole(int numAttempts, int gridDimension) {
         this.attemptsLeft = numAttempts;
         this.moleGrid= new char[gridDimension][gridDimension];
+        for (int i = 0; i < gridDimension; i++) {
+             for (int j = 0; j < gridDimension; j++) {
+                  moleGrid[i][j] = '*';
+             }
+        }
     }
     
     // given a location, place a mole at that location and return true. Otherwise, return false.
