@@ -9,13 +9,13 @@ public class Squarelotron {
         this.squarelotron = new int[n][n];
 		int count = 1;
 		for (int i = 0; i < n; i++) {
-        	for (int j = 0; j < n; j++ ){
-        		squarelotron[i][j] = count;
+        	    for (int j = 0; j < n; j++ ){
+        	     	squarelotron[i][j] = count;
         		count++;
-        	}
-        }
+        	    }
+                }
 		this.size = n;
-    }
+        }
 	
 	/* This method performs the Upside-Down Flip of the squarelotron, 
 	 and returns the new squarelotron. 
