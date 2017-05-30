@@ -1,47 +1,98 @@
+import java.util.*;
 
 public class Squarelotron {
-    int [][] squarelotron = new int [3][3];
+	int[][] squarelotron = new int[3][3];
 	int size;
+
 	
-	/* fills the 2-dimensional array with the numbers 1 to n squared, in order.
-	 It also sets the size instance variable to be n. */
 	public Squarelotron(int n) {
-        this.squarelotron = new int[n][n];
+		this.squarelotron = new int[n][n];
 		int count = 1;
 		for (int i = 0; i < n; i++) {
-        	    for (int j = 0; j < n; j++ ){
-        	     	squarelotron[i][j] = count;
-        		count++;
-        	    }
-                }
+			for (int j = 0; j < n; j++) {
+				squarelotron[i][j] = count;
+				count++;
+			}
+		}
 		this.size = n;
-        }
+	}
+
 	
-	/* This method performs the Upside-Down Flip of the squarelotron, 
-	 and returns the new squarelotron. 
-	 The original squarelotron is not modified */
 	public Squarelotron upsideDown(int ring) {
-		
-		return null;
+
+		Squarelotron t = new Squarelotron(this.size);
+		ring = ring - 1;
+		int i = ring;
+		while (i <= this.size - 1 - ring) {
+			if (i == ring || i == this.size - 1 - ring) {
+				int j = ring;
+				while (j <= this.size - 1 - ring) {
+					t.squarelotron[i][j] = this.squarelotron[this.size - 1 - i][j];
+					j++;
+
+				}
+			} else {
+				t.squarelotron[i][ring] = this.squarelotron[this.size - 1 - ring - i][ring];
+				t.squarelotron[i][this.size - 1 - ring] = this.squarelotron[this.size - 1 - ring - i][this.size - 1
+						- ring];
+			}
+			i++;
+		}
+		return t;
+
 	}
+
 	
-	/*This method performs the Main Diagonal Flip of the squarelotron,
-	and returns the new squarelotron. 
-	The original squarelotron is not  modified */
 	public Squarelotron mainDiagonal(int ring) {
-		
-		return null;
+		Squarelotron t = new Squarelotron(this.size);
+		ring--;
+		int i = ring;
+		while (i <= this.size - 1 - ring) {
+			if (i == ring) {
+				int j = ring;
+				while (j <= this.size - 1 - ring) {
+					if (j == 0) {
+						j++;
+						continue;
+					}
+					t.squarelotron[i][j] = this.squarelotron[j][i];
+					t.squarelotron[j][i] = this.squarelotron[i][j];
+					j++;
+				}
+			} else {
+				t.squarelotron[i][this.size - 1 - ring] = this.squarelotron[this.size - 1 - ring][i];
+				t.squarelotron[this.size - 1 - ring][i] = this.squarelotron[i][this.size - 1 - ring];
+
+			}
+			i++;
+		}
+
+		return t;
+
 	}
+
 	
-	/*The argument numberOfTurns indicates the number of times the entire 
-	squarelotron should be rotated 90° clockwise. Any integer, 
-	including zero and negative integers, is allowable as the argument.
-	A value of -1 indicates a 90° counterclockwise rotation. 
-	This method modifies the internal representation of the squarelotron;
-	it does not create a new squarelotron.*/
-	void rotateRight(int numberOfTurns){
-		
+	void rotateRight(int numberOfTurns) {
+
+	}
+
+	public void display() {
+		for (int i = 0; i < this.size; i++) {
+			for (int j = 0; j < this.size; j++) {
+				System.out.print(this.squarelotron[i][j]);
+				System.out.print("   |");
+			}
+			System.out.println();
+		}
+	}
+
+	public static void main(String[] args) {
+		Squarelotron s = new Squarelotron(4);
+		s.display();
+		Squarelotron t = new Squarelotron(4);
+		t = s.mainDiagonal(1);
+		t.display();
 		
 	}
-	
+
 }
