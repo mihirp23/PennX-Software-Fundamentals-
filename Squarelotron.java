@@ -18,7 +18,7 @@ public class Squarelotron {
 	}
 
 	
-	public Squarelotron upsideDown(int ring) {
+	public Squarelotron upsideDownFlip(int ring) {
 
 		Squarelotron t = new Squarelotron(this.size);
 		ring = ring - 1;
@@ -43,7 +43,7 @@ public class Squarelotron {
 	}
 
 	
-	public Squarelotron mainDiagonal(int ring) {
+	public Squarelotron mainDiagonalFlip(int ring) {
 		Squarelotron t = new Squarelotron(this.size);
 		ring--;
 		int i = ring;
@@ -75,7 +75,25 @@ public class Squarelotron {
 	void rotateRight(int numberOfTurns) {
 
 	}
-
+    @Override
+    public boolean equals(Object obj) {
+    	if (obj == null) {
+    		return false;
+    	}
+    	final Squarelotron t = (Squarelotron) obj;
+        if (this.size != t.size) {
+        	return false;
+        }
+        for (int i = 0; i < this.size; i++) {
+        	for (int j = 0; j < this.size; j++) {
+        		if (this.squarelotron[i][j] != t.squarelotron[i][j]) {
+        			return false;
+        		}
+        	}
+        }
+    	return true;
+    }
+    
 	public void display() {
 		for (int i = 0; i < this.size; i++) {
 			for (int j = 0; j < this.size; j++) {
@@ -90,7 +108,7 @@ public class Squarelotron {
 		Squarelotron s = new Squarelotron(4);
 		s.display();
 		Squarelotron t = new Squarelotron(4);
-		t = s.mainDiagonal(1);
+		t = s.mainDiagonalFlip(1);
 		t.display();
 		
 	}

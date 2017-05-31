@@ -15,12 +15,12 @@ public class SquarelotronTest {
 	}
 
 	@Test
-	public void testUpsideDown() {
+	public void testUpsideDownFlip() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testMainDiagonal() {
+	public void testMainDiagonalFlip() {
 		fail("Not yet implemented");
 	}
 
