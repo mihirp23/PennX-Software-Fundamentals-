@@ -156,17 +156,40 @@ public abstract class Ship {
 	
 	
 	public void placeShipAt(int row, int column, boolean horizontal, Ocean ocean) {
-		// todo
+		this.setBowRow(row);
+		this.setBowColumn(column);
+		this.setHorizontal(horizontal);
+		if (horizontal) {
+			for (int j = column; j < column + this.length;j++) {
+				ocean.ships[row][j] = this;
+			}
+		}
+		else {
+			for (int i = row; i < row + this.length; i++) {
+				ocean.ships[i][column] = this;
+			}
+		}
 	}
 	
 	boolean shootAt(int row, int column) {
-		// todo
+		if (this.horizontal) {
+			if (this.bowRow == row && column < this.bowColumn + this.length) {
+				hit[this.bowColumn + column] = true;
+				return true;
+			}
+		}
+		else {
+			if (this.bowColumn == column && row < this.bowRow + this.length) {
+				hit[this.bowRow + row] = true;
+				return true;
+			}
+		}
 		return false;
 	}
 	
 	boolean isSunk() {
 		for (int i = 0; i < this.length; i++) {
-			if (hit[i]== false) {
+			if (hit[i] == false) {
 				return false;
 			}
 		}
@@ -175,7 +198,11 @@ public abstract class Ship {
 	
 	@Override
 	public String toString() {
-		// todo
-		return "S";
+		if (this.isSunk()) {
+			return "x";
+		}
+		else {
+			return "s";
+		}
 	}
 }
