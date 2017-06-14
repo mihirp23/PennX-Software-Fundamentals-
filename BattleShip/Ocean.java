@@ -13,16 +13,41 @@ public class Ocean {
 	
 	public void placeAllShipsRandomly() {
 		// todo
+		BattleShip bShip = new BattleShip();
+		bShip.setBowRow(0);
+		bShip.setBowColumn(0);
+		bShip.setHorizontal(true);
+		
+		EmptySea eSea = new EmptySea();
+		for (int i = 0; i < 20; i++) {
+			for (int j = 0; j < 20; j++) {
+				ships[i][j] = eSea;
+			}
+		}
+		
+		ships[0][0] = bShip;
+		
 	}
 	
 	public boolean isOccupied(int row, int column) {
-		// todo
+		if (ships[row][column].getShipType() != "empty") {
+			return true;
+		}
         return false;		
 	}
 	
 	public boolean shootAt(int row, int column) {
-		// todo
-		return false;
+		
+		if (ships[row][column].getShipType() == "empty") {
+			return false;
+		}
+		
+		if  (ships[row][column].isSunk() == false) {
+			// todo
+			this.shotsFired++;
+			this.hitCount++;
+		}
+		return true;
 	}
 	
 	public int getShotsFired() {
@@ -38,8 +63,14 @@ public class Ocean {
 	}
 	 
 	public boolean isGameOver() {
-		// todo
-		return false;
+		for (int i = 0; i < 20; i++) {
+			for (int j = 0; j < 20; j++) {
+				if (ships[i][j].isSunk() == false) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 	
 	public Ship[][] getShipArray() {
