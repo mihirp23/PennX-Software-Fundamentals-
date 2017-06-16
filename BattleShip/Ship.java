@@ -1,46 +1,74 @@
-
+/* Name : Mihir Patel
+ * Date : June 15, 2017
+ * File : Ship.java
+ */
 public abstract class Ship {
     
+	// instance variables.
     int bowRow;
     int bowColumn;
     int length;
     boolean horizontal;
     boolean [] hit;
     
+    /* -------------------- getBowRow() ---------------- */
 	public int getBowRow() {
 		return bowRow;
 	}
+	
+	/* -------------------- setBowRow() ---------------- */
 	public void setBowRow(int bowRow) {
 		this.bowRow = bowRow;
 	}
+	
+	/* ----------------- getBowColumn() --------------- */
 	public int getBowColumn() {
 		return bowColumn;
 	}
+	
+	/* ------------------ setBowColumn() --------------- */
 	public void setBowColumn(int bowColumn) {
 		this.bowColumn = bowColumn;
 	}
+	
+	/* ------------------- getLength() ----------------- */
 	public int getLength() {
 		return length;
 	}
+	
+	/* ------------------- setLength() ----------------- */
 	public void setLength(int length) {
 		this.length = length;
 	}
+	
+	/* ------------------- isHorizontal() -------------- */
 	public boolean isHorizontal() {
 		return horizontal;
 	}
+	
+	/* ------------------ setHorizontal() -------------- */
 	public void setHorizontal(boolean horizontal) {
 		this.horizontal = horizontal;
 	}
+	
+	/* ------------------- getHit() --------------------- */
 	public boolean[] getHit() {
 		return hit;
 	}
+	
+	/* -------------------- setHit() -------------------- */
 	public void setHit(boolean[] hit) {
 		this.hit = hit;
 	}
 	
+	/* -------------------- getShipType() --------------- */
 	abstract String getShipType();
 	
-	public boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean) {
+	/* --------------------- okToPlaceShipAT() ------------------- */
+	public boolean okToPlaceShipAt(int row, 
+	                               int column, 
+	                               boolean horizontal, 
+	                               Ocean ocean) {
 		if (ocean.isOccupied(row, column)) {
 			return false;
 		}
@@ -56,9 +84,10 @@ public abstract class Ship {
 				return false;
 			}
 			
+			
 			// check to see if a ship would touch any other ships vertically
 			// or diagonally should it be placed at this point
-			for (int j = column + 1; j < column + this.length; j++) {
+			for (int j = column; j < column + this.length; j++) {
 				
 				// another ship is already occupied at one of the points
 				if (ocean.isOccupied(row, j)) {
@@ -154,8 +183,11 @@ public abstract class Ship {
 	}
 	
 	
-	
-	public void placeShipAt(int row, int column, boolean horizontal, Ocean ocean) {
+	/* ----------------------- placeShipAT() ----------------------- */
+	public void placeShipAt(int row,  
+			                int column, 
+			                boolean horizontal,
+			                Ocean ocean) {
 		this.setBowRow(row);
 		this.setBowColumn(column);
 		this.setHorizontal(horizontal);
@@ -171,6 +203,7 @@ public abstract class Ship {
 		}
 	}
 	
+	/* ------------------------ shootAt() ------------------------ */
 	boolean shootAt(int row, int column) {
 		if (this.horizontal) {
 			if (this.bowRow == row && column < this.bowColumn + this.length) {
@@ -187,6 +220,7 @@ public abstract class Ship {
 		return false;
 	}
 	
+	/* ----------------------- isSunk() --------------------- */
 	boolean isSunk() {
 		for (int i = 0; i < this.length; i++) {
 			if (hit[i] == false) {
@@ -196,6 +230,7 @@ public abstract class Ship {
 		return true;
 	}
 	
+	/* --------------------- toString() --------------------- */
 	@Override
 	public String toString() {
 		if (this.isSunk()) {
