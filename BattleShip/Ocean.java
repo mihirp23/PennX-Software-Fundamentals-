@@ -184,8 +184,8 @@ public class Ocean {
 		return this.ships;
 	}
 	
-	/* -------------------- print() ------------------------------ */
-	public void print() {
+	/* -------------------- debug_print() ------------------------------ */
+	public void debug_print() {
 		// todo
 		for (int i = 0; i < 20; i++) {
 			for (int j = 0; j < 20; j++) {
@@ -210,6 +210,40 @@ public class Ocean {
 				else {
 					System.out.print("- |");
 				}
+			}
+			System.out.println();
+		}
+	}
+	
+	/* ----------------------- print() ---------------------------- */
+	public void print() {
+		for (int i = 0; i < 20; i++) {
+			// print grid info to aid user
+			if (i == 0) {
+				for (int j = 0; j < 20; j++) {
+					if (j == 0) {
+						System.out.print("   ");
+					}
+					String formatted = String.format("%02d", j);
+					System.out.print(formatted + " ");
+				}
+				System.out.println();
+				for (int j = 0; j < 20; j++) {
+					if (j == 0) {
+						System.out.print("   ");
+					}
+					System.out.print("___");
+				}
+				System.out.println();
+			}
+			
+			// print the ships
+			for (int j = 0; j < 20; j++) {
+				if (j == 0) {
+					String formatted = String.format("%02d", i);
+					System.out.print(formatted + "  ");
+				}
+				System.out.print(ships[i][j] + "  ");
 			}
 			System.out.println();
 		}

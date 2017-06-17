@@ -205,6 +205,10 @@ public abstract class Ship {
 	
 	/* ------------------------ shootAt() ------------------------ */
 	boolean shootAt(int row, int column) {
+		if (row < 0 || row > 19 || column < 0 || column > 19) {
+			return false;
+		}
+		
 		if (this.horizontal) {
 			if (this.bowRow == row && column < this.bowColumn + this.length) {
 				hit[this.bowColumn + column] = true;
@@ -233,6 +237,7 @@ public abstract class Ship {
 	/* --------------------- toString() --------------------- */
 	@Override
 	public String toString() {
+		// todo
 		if (this.isSunk()) {
 			return "x";
 		}
