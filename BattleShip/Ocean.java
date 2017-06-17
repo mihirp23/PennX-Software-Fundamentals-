@@ -171,7 +171,13 @@ public class Ocean {
 		// determine whether all of the ships are sunk
 		for (int i = 0; i < 20; i++) {
 			for (int j = 0; j < 20; j++) {
-				if (ships[i][j].isSunk() == false) {
+				if (ships[i][j].getShipType() == "empty"){
+					continue;
+				}
+				if (ships[i][j].isSunk() == true) {
+					continue;
+				}
+				else {
 					return false;
 				}
 			}

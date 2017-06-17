@@ -10,6 +10,7 @@ public class BattleshipGame {
 		Ocean myOcean = new Ocean();
 		myOcean.placeAllShipsRandomly();
 		myOcean.print();
+		int numAttempts = 0;
 		while (myOcean.isGameOver() == false) {
 			System.out.println("Take five shots");
 			Scanner in = new Scanner(System.in);
@@ -32,6 +33,7 @@ public class BattleshipGame {
 			for (int i = 0; i < shots.length; i += 2) {
 			    int x = shots[i];
 			    int y = shots[i + 1];
+			    numAttempts++;
 			    System.out.println("Shooting at " + x + " , " + y);
 			    if (myOcean.shootAt(x, y) == true) {
 			        System.out.println("You just shot " + myOcean.ships[x][y].getShipType());	
@@ -40,6 +42,8 @@ public class BattleshipGame {
 			
 			myOcean.print();
 		}
+		System.out.println("Game over!");
+		System.out.println("Number of attempts : " + numAttempts);
  }
 
 }

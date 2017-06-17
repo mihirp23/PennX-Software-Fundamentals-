@@ -211,13 +211,13 @@ public abstract class Ship {
 		
 		if (this.horizontal) {
 			if (this.bowRow == row && column < this.bowColumn + this.length) {
-				hit[this.bowColumn + column] = true;
+				hit[column % this.length] = true;
 				return true;
 			}
 		}
 		else {
 			if (this.bowColumn == column && row < this.bowRow + this.length) {
-				hit[this.bowRow + row] = true;
+				hit[row % this.length] = true;
 				return true;
 			}
 		}
@@ -227,7 +227,7 @@ public abstract class Ship {
 	/* ----------------------- isSunk() --------------------- */
 	boolean isSunk() {
 		for (int i = 0; i < this.length; i++) {
-			if (hit[i] == false) {
+			if (hit[i] != true) {
 				return false;
 			}
 		}
